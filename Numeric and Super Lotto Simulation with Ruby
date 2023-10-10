@@ -1,0 +1,35 @@
+class Piyango
+  def initialize(oyun_tipi)
+    @rakam = (oyun_tipi == "Sayısal") ? 49 : 54
+  end
+
+  def oyna(kolon_adedi)
+    kolon_adedi.times do
+      arr = []
+      while arr.length < 6
+        r = rand(1..@rakam)
+        arr << r unless arr.include?(r)
+      end
+      arr.sort!
+      puts arr.inspect
+    end
+  end
+end
+
+puts "Hangi piyango türünü seçmek istersiniz?"
+puts "1 - Sayısal Loto"
+puts "2 - Süper Loto"
+secim = gets.chomp.to_i
+
+if secim == 1
+  loto = Piyango.new("Sayısal")
+elsif secim == 2
+  loto = Piyango.new("Süper")
+else
+  puts "Geçersiz seçim! Lütfen 1 veya 2 tuşlayın."
+  exit
+end
+
+puts "Kaç kolon oynamak istersiniz?"
+kolon_adedi = gets.chomp.to_i
+loto.oyna(kolon_adedi)
